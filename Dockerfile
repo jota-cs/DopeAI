@@ -5,6 +5,8 @@ FROM node:20-alpine AS builder
 
 WORKDIR /usr/src/app
 
+RUN apk add --no-cache 
+
 # Copia arquivos de definição de pacotes
 COPY package*.json ./
 COPY prisma ./prisma/
