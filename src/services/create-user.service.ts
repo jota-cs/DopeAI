@@ -1,6 +1,6 @@
 import { IUserRepository } from '../repositories/user.repository';
 import { User } from '@prisma/client';
-
+import { hash } from 'bcryptjs';
 interface IRequest {
   name: string;
   email: string;
@@ -28,7 +28,8 @@ export class CreateUserService {
     }
 
     // ATENÇÃO: Em produção, faça o hash da senha aqui antes de salvar!
-    const passwordHash = password; // Ex: await bcrypt.hash(password, 8);
+    // Substitua o antigo "const passwordHash = password;" por:
+    const passwordHash = await hash(password, 8);
 
     const user = await this.userRepository.create({
       name,
