@@ -5,8 +5,7 @@ FROM node:20-alpine AS builder
 
 WORKDIR /usr/src/app
 
-RUN apk add --no-cache 
-
+RUN apk add --no-cache openssl
 # Copia arquivos de definição de pacotes
 COPY package*.json ./
 COPY prisma ./prisma/
@@ -31,6 +30,8 @@ RUN npm prune --production
 FROM node:20-alpine AS runner
 
 WORKDIR /usr/src/app
+
+RUN apk add --no-cache openssl
 
 ENV NODE_ENV=production
 
