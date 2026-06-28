@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 // PASSO A: Importamos as rotas de usuários que você criou no arquivo anterior
 import { userRoutes } from './routes/user.routes';
 import { authRoutes } from './services/auth.routes';
+import { chatRoutes } from './routes/chat.routes'
 
 dotenv.config();
 
@@ -25,4 +26,5 @@ app.get('/health', (req, res) => {
 // A partir deste momento, o Express passa a escutar a rota POST '/users'
 app.use(userRoutes);
 app.use(authRoutes);
+app.use(chatRoutes);
 export { app };
